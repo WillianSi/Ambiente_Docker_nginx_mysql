@@ -1,0 +1,29 @@
+version: "3.9"
+services:
+    sistema:
+        container_name: sys
+        hostname: sys
+        volumes:
+            - ./arquivos:/usr/share/nginx/html
+        networks: 
+            - default
+        ports:
+            - 7777:80
+        image: nginx
+    bd:
+        container_name: banco
+        hostname: bd
+        volumes:
+            - ./dados:/var/lib/mysql
+        environment:
+            MYSQL_ALLOW_EMPTY_PASSWORD: true
+            MYSQL_DATABASE: BDRedes
+            MYSQL_USER: abc
+            MYSQL_PASSWORD: abc
+        networks: 
+            - default
+        ports: 
+            - 3307:3306
+        image: mysql
+networks: 
+    default:
